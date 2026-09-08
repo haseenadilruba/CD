@@ -1,0 +1,24 @@
+%{
+#include <stdio.h>
+int n = 0;
+%}
+
+%%
+
+[A-Za-z]+    { n++; }
+[ \t\n]+     ;
+.            ;
+
+%%
+
+int yywrap()
+{
+    return 1;
+}
+
+int main()
+{
+    yylex();
+    printf("Number of words = %d\n", n);
+    return 0;
+}
