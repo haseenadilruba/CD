@@ -1,0 +1,22 @@
+%{
+#include <stdio.h>
+int n=0;
+%}
+
+%%
+if|else|while|int|float      { n++; printf("Keyword: %s\n",yytext); }
+[0-9]+                       { n++; printf("Number: %s\n",yytext); }
+[a-zA-Z][a-zA-Z0-9]*         { n++; printf("Identifier: %s\n",yytext); }
+[+*/=-]                      { n++; printf("Operator: %s\n",yytext); }
+[(){};,]                     { n++; printf("Separator: %s\n",yytext); }
+[ \t\n]                      ;
+.                            ;
+%%
+
+int yywrap(){ return 1; }
+
+int main()
+{
+    yylex();
+    printf("Total tokens = %d\n",n);
+}
