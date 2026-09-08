@@ -1,0 +1,11 @@
+%{
+#include<stdio.h>
+%}
+
+%%
+[b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z] { printf("%s : Consonant\n",yytext); }
+. ;
+%%
+
+int yywrap(){return 1;}
+int main(){yylex();}
